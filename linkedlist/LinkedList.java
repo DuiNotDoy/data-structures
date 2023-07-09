@@ -46,17 +46,20 @@ public class LinkedList {
             Node prev = null;
             int currPos = 0;
 
-            while (curr.next != null) {
-                if (currPos == pos) {
-                    Node node = new Node(n);
-                    prev.next = node;
-                    node.next = curr;
-                    break;
-                }
+            while (curr.next != null && currPos != pos) {
                 prev = curr;
                 curr = curr.next;
                 currPos++;
             }
+
+            if (currPos == pos) {
+                Node node = new Node(n);
+                prev.next = node;
+                node.next = curr;
+                return this;
+            }
+
+            System.out.println("Position does not exist in the list");
         }
 
         return this;

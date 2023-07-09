@@ -10,7 +10,7 @@ public class Tester {
         list.insertEnd(7);
         list.printList();
         System.out.println("insert at");
-        list.insertAt(3, 10);
+        list.insertAt(3, 12);
         list.printList();
     }
 }
