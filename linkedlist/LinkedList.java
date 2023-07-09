@@ -1,28 +1,13 @@
 import java.util.NoSuchElementException;
 
-public class Main {
-    public static void main(String[] args) {
-        linkedList list = new linkedList();
-        list.insertFront(1);
-        list.insertFront(4);
-        list.insertEnd(2);
-        list.insertEnd(7);
-        list.printList();
-        list.removeEnd();
-        list.printList();
-        list.removeFront();
-        list.printList();
-    }
-}
-
-class linkedList {
+public class LinkedList {
     Node head;
 
-    public linkedList() {
+    public LinkedList() {
         this.head = null;
     }
 
-    public linkedList insertFront(int n) {
+    public LinkedList insertFront(int n) {
         Node node = new Node(n);
 
         if (this.head == null) {
@@ -35,7 +20,7 @@ class linkedList {
         return this;
     }
 
-    public linkedList insertEnd(int n) {
+    public LinkedList insertEnd(int n) {
         Node node = new Node(n);
 
         if (this.head == null) {
@@ -53,9 +38,33 @@ class linkedList {
         return this;
     }
 
-    public linkedList removeFront() {
+    public LinkedList insertAt(int pos, int n) {
         if (this.head == null) {
-            throw new NoSuchElementException("Given LinkedList is empty");
+            throw new NoSuchElementException("List is empty");
+        } else {
+            Node curr = this.head;
+            Node prev = null;
+            int currPos = 0;
+
+            while (curr.next != null) {
+                if (currPos == pos) {
+                    Node node = new Node(n);
+                    prev.next = node;
+                    node.next = curr;
+                    break;
+                }
+                prev = curr;
+                curr = curr.next;
+                currPos++;
+            }
+        }
+
+        return this;
+    }
+
+    public LinkedList removeFront() {
+        if (this.head == null) {
+            throw new NoSuchElementException("List is empty");
         } else {
             this.head = this.head.next;
         }
@@ -63,9 +72,9 @@ class linkedList {
         return this;
     }
 
-    public linkedList removeEnd() {
+    public LinkedList removeEnd() {
         if (this.head == null) {
-            throw new NoSuchElementException("Given LinkedList is empty");
+            throw new NoSuchElementException("List is empty");
         } else {
             Node curr = this.head;
             Node prev = null;
@@ -99,7 +108,7 @@ class linkedList {
         }
     }
 
-    public void printList(linkedList list) {
+    public void printList(LinkedList list) {
         if (this.head == null) {
             System.out.println("List is empty");
         } else {
