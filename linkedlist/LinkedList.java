@@ -93,6 +93,29 @@ public class LinkedList {
         return this;
     }
 
+    public LinkedList removeAt(int pos) {
+        if (this.head == null) {
+            throw new NoSuchElementException("List is empty");
+        }
+
+        Node curr = this.head;
+        Node prev = null;
+        int currPos = 0;
+
+        while (curr.next != null && currPos != pos) {
+            prev = curr;
+            curr = curr.next;
+            currPos++;
+        }
+
+        if (currPos == pos) {
+            prev.next = curr.next;
+            curr = null;
+        }
+
+        return this;
+    }
+
     public void printList() {
         if (this.head == null) {
             System.out.println("List is empty");

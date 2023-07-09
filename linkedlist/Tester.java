@@ -12,5 +12,8 @@ public class Tester {
         System.out.println("insert at");
         list.insertAt(3, 12);
         list.printList();
+        System.out.println("remove at");
+        list.removeAt(2);
+        list.printList();
     }
 }
