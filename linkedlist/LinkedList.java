@@ -12,10 +12,9 @@ public class LinkedList {
 
         if (this.head == null) {
             this.head = node;
-        } else {
-            node.next = this.head;
-            this.head = node;
         }
+        node.next = this.head;
+        this.head = node;
 
         return this;
     }
@@ -25,15 +24,14 @@ public class LinkedList {
 
         if (this.head == null) {
             this.head = node;
-        } else {
-            Node curr = this.head;
-
-            while (curr.next != null) {
-                curr = curr.next;
-            }
-
-            curr.next = node;
         }
+        Node curr = this.head;
+
+        while (curr.next != null) {
+            curr = curr.next;
+        }
+
+        curr.next = node;
 
         return this;
     }
@@ -41,26 +39,25 @@ public class LinkedList {
     public LinkedList insertAt(int pos, int n) {
         if (this.head == null) {
             throw new NoSuchElementException("List is empty");
-        } else {
-            Node curr = this.head;
-            Node prev = null;
-            int currPos = 0;
-
-            while (curr.next != null && currPos != pos) {
-                prev = curr;
-                curr = curr.next;
-                currPos++;
-            }
-
-            if (currPos == pos) {
-                Node node = new Node(n);
-                prev.next = node;
-                node.next = curr;
-                return this;
-            }
-
-            System.out.println("Position does not exist in the list");
         }
+        Node curr = this.head;
+        Node prev = null;
+        int currPos = 0;
+
+        while (curr.next != null && currPos != pos) {
+            prev = curr;
+            curr = curr.next;
+            currPos++;
+        }
+
+        if (currPos == pos) {
+            Node node = new Node(n);
+            prev.next = node;
+            node.next = curr;
+            return this;
+        }
+
+        System.out.println("Position does not exist in the list");
 
         return this;
     }
@@ -68,9 +65,8 @@ public class LinkedList {
     public LinkedList removeFront() {
         if (this.head == null) {
             throw new NoSuchElementException("List is empty");
-        } else {
-            this.head = this.head.next;
         }
+        this.head = this.head.next;
 
         return this;
     }
@@ -78,17 +74,16 @@ public class LinkedList {
     public LinkedList removeEnd() {
         if (this.head == null) {
             throw new NoSuchElementException("List is empty");
-        } else {
-            Node curr = this.head;
-            Node prev = null;
-
-            while (curr.next != null) {
-                prev = curr;
-                curr = curr.next;
-            }
-
-            prev.next = null;
         }
+        Node curr = this.head;
+        Node prev = null;
+
+        while (curr.next != null) {
+            prev = curr;
+            curr = curr.next;
+        }
+
+        prev.next = null;
 
         return this;
     }
@@ -97,7 +92,6 @@ public class LinkedList {
         if (this.head == null) {
             throw new NoSuchElementException("List is empty");
         }
-
         Node curr = this.head;
         Node prev = null;
         int currPos = 0;
