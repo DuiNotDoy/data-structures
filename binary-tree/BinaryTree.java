@@ -13,6 +13,9 @@ public class BinaryTree {
         node2.right = node5;
 
         visitChild(node1);
+
+        int total = computeSum(node1);
+        System.out.println("total: " + total);
     }
 
     static Node visitChild(Node node) {
@@ -26,6 +29,18 @@ public class BinaryTree {
         }
 
         return node;
+    }
+
+    static int computeSum(Node node) {
+        if (node.left != null) {
+            node.data += computeSum(node.left);
+        }
+
+        if (node.right != null) {
+            node.data += computeSum(node.right);
+        }
+
+        return node.data;
     }
 }
 
