@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class BinaryTree {
     public static void main(String[] args) {
         Node node1 = new Node(2);
@@ -12,10 +14,12 @@ public class BinaryTree {
         node2.left = node4;
         node2.right = node5;
 
-        visitChild(node1);
+        // visitChild(node1);
+        //
+        // int total = computeSum(node1);
+        // System.out.println("total: " + total);
 
-        int total = computeSum(node1);
-        System.out.println("total: " + total);
+        breadthFirstTraversal(node1);
     }
 
     static Node visitChild(Node node) {
@@ -41,6 +45,24 @@ public class BinaryTree {
         }
 
         return node.data;
+    }
+
+    static void breadthFirstTraversal(Node node) {
+        ArrayList<Node> to_visit = new ArrayList<Node>();
+        to_visit.add(node);
+
+        while (to_visit.size() > 0) {
+            Node curr = to_visit.getFirst();
+            System.out.println("curr node: " + curr.data);
+
+            if (curr.left != null)
+                to_visit.add(curr.left);
+
+            if (curr.right != null)
+                to_visit.add(curr.right);
+
+            to_visit.removeFirst();
+        }
     }
 }
 
